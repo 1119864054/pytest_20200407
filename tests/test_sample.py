@@ -12,4 +12,4 @@ def test_answer():
 
 
 if __name__ == "__main__":
-    pytest.main()
+    pytest.main(['-sv', "C:\\Users\\11198\\PycharmProjects\\pytest_20200407", "--html", "report.html"])
