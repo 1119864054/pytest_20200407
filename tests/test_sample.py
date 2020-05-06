@@ -3,16 +3,16 @@
 import pytest
 import logging
 
-logger = logging.getLogger('TestAnser')
+from framework.logger import Logger
 
-def inc(x):
-    return x + 1
-
-
-def test_answer():
-    logger.info('lohlohlhlhohlh')
-    assert inc(3) == 5
+logger = Logger(logger='TestSample').getLog()
 
 
-if __name__ == "__main__":
-    pytest.main(['-sv', "C:\\Users\\11198\\PycharmProjects\\pytest_20200407", "--html", "report.html"])
+class TestSample:
+
+    @pytest.fixture(autouse=True, scope='function')
+    def set_up(self, driver):
+        driver.get('https://pypi.org/')
+
+    def test_1(self, driver):
+        driver
