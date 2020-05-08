@@ -3,6 +3,7 @@ from datetime import datetime
 import pytest
 from py._xmlgen import html
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from config.teller_config import BROWSER_NAME, CHROME_DRIVER_PATH
 from framework.logger import Logger
@@ -53,9 +54,13 @@ def pytest_html_results_summary(prefix, summary, postfix):
 def driver():
     logger.info('link start ...')
     global driver
-    driver.implicitly_wait(1)
     if BROWSER_NAME.upper() == 'CHROME':
-        driver = webdriver.Chrome(CHROME_DRIVER_PATH)
+        # 无头
+        chrome_options = Options()
+        chrome_options.add_argument('--headless')
+        logger.info('open browser ...')
+        driver = webdriver.Chrome(options=chrome_options, executable_path=CHROME_DRIVER_PATH)
+    # driver.implicitly_wait(1)
     yield driver
     driver.quit()
     logger.info('link end ...')

@@ -1,6 +1,6 @@
 import os
 
-BROWSER_NAME = 'IE'
+BROWSER_NAME = 'CHROME'
 
 # local path
 LOCAL_PATH = os.path.dirname((os.path.dirname(os.path.abspath(__file__))))
