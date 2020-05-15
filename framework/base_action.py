@@ -1,3 +1,5 @@
+import time
+
 from framework.logger import Logger
 from util.object_map import get_element
 
@@ -19,4 +21,30 @@ class BaseAction(object):
             return element_text
         except Exception as e:
             logger.error("get_element_text : %s " % e)
+            raise e
+
+    def click_element(self, loc):
+        loc_type = loc[0]
+        loc_expression = loc[1]
+        try:
+            logger.info("click_element : %s => %s" % (loc_type, loc_expression))
+            element = get_element(self.driver, loc_type, loc_expression)
+            element.click()
+        except Exception as e:
+            logger.error("click_element : %s " % e)
+            raise e
+
+    def sleep(self, sec):
+        time.sleep(sec)
+
+    def input_element(self, loc, input_content):
+        loc_type = loc[0]
+        loc_expression = loc[1]
+        try:
+            logger.info("input_element : %s => %s == %s" % (loc_type, loc_expression, input_content))
+            element = get_element(self.driver, loc_type, loc_expression)
+            element.clear()
+            element.send_keys(input_content)
+        except Exception as e:
+            logger.error("input_element : %s " % e)
             raise e

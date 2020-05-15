@@ -9,3 +9,5 @@ LOCAL_PATH = os.path.dirname((os.path.dirname(os.path.abspath(__file__))))
 CHROME_DRIVER_PATH = LOCAL_PATH + '/tools/chromedriver.exe'
 
 LOG_PATH = LOCAL_PATH + '/logs/'
+
+DOWNLOAD_FILE_DIRECTORY = LOCAL_PATH + '/download'
